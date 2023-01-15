@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validate, DataTable, dan Select2</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <h1>Data Tables</h1>
+    <table id="tabelContoh" border="1">
+        <thead>
+            <tr>
+                <th>Company</th>
+                <th>Contact</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Alfreds Futterkiste</td>
+                <td>Maria Anders</td>
+                <td>Germany</td>
+            </tr>
+            <tr>
+                <td>Centro comercial Moctezuma</td>
+                <td>Francisco Chang</td>
+                <td>Mexico</td>
+            </tr>
+            <tr>
+                <td>Ernst Handel</td>
+                <td>Roland Mendel</td>
+                <td>Austria</td>
+            </tr>
+            <tr>
+                <td>Island Trading</td>
+                <td>Helen Bennett</td>
+                <td>UK</td>
+            </tr>
+            <tr>
+                <td>Laughing Bacchus Winecellars</td>
+                <td>Yoshi Tannamuri</td>
+                <td>Canada</td>
+            </tr>
+            <tr>
+                <td>Magazzini Alimentari Riuniti</td>
+                <td>Giovanni Rovelli</td>
+                <td>Italy</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Select Multiple, atau select search -->
+    <select multiple="multiple">
+        <option>Botak</option>
+        <option>Kinclong</option>
+        <option>Perbakin</option>
+        <option>Yes</option>
+        <option>YesY</option>
+        <option>Halo</option>
+        <option>Alabama</option>
+        <option>Neat</option>
+        <option>Test</option>
+        <option>Labs</option>
+    </select>
+    <!-- JQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Ini Datatables CDN -->
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(function() {
+            $("table#tabelContoh").DataTable({
+                // @see PPT Week 5
+                pagingLength: 3,
+                lengthMenu: [
+                    [3, 5, 7, -1],
+                    [3, 5, 7, "SEMUA"]
+                ],
+                // @see https://datatables.net/reference/option/order
+                order: [
+                    [1, 'asc']
+                ]
+            });
+        });
+    </script>
+    <!-- Select2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <!-- jQuery Validate CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+    <script>
+        $(function() {
+            $("select").select2();
+            $("form#search").validate({
+                // @see https://jqueryvalidation.org/validate/#messages
+                messages: {
+                    q: "Kata Kunci tidak boleh kosong!"
+                }
+            });
+            $("form#search").submit(function(e) {
+                // Jegal Form
+                e.preventDefault();
+                /** @type HTMLFormElement */
+                let form = $(this);
+                let qElement = $(form.find("input[name=q]"));
+                let kataKunci = qElement.val();
+                if (kataKunci == "") return;
+                // Ubah kata kunci search
+                qElement.val(kataKunci + " site:stts.edu");
+                console.log(kataKunci);
+                // Kirim ulang Form nya!
+                e.target.submit();
+            });
+        });
+    </script>
+    <form id="search" action="https://google.com/search" method="get">
+        Cari di Web STTS
+        <input type="text" name="q" required>
+        <button type="submit">Cari!</button>
+    </form>
+
+</body>
+
+</html>
