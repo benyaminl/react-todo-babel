@@ -11,17 +11,24 @@ for more, see https://sib.stts.edu/~ben
 ## How to Init Project
 
 Install on Dependency 
-`npm install`
+
+```npm install```
 
 Then run the babel for development purpose (using react-app/dev)
-`npm run watch`
+
+```npm run watch```
 
 For building dev only run 
-`npm run build`
+
+```npm run build```
 
 For full prod building
-`npm run publish`
+
+```npm run publish```
 
 For all script that's used/written, see https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project and https://reactjs.org/docs/add-react-to-a-website.html#run-jsx-preprocessor
 
-For more, see the package.json
+For more, see the `package.json`
+
+### For other ISTTS Lecturer
+All must survive, the winter is coming! Thanks for the courage from Mr. Mikhael and Mr. Thuan (THUANOS)
