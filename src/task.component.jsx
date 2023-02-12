@@ -2,43 +2,36 @@ class TaskComponent extends React.Component {
     constructor(p) {
         super(p);
         this.parent = p.parent;
-        this.state = {done: false, init: true, edit: true, task: "", tempValue : ""};
-        this.save = this.save.bind(this);
-        this.tempValue = this.tempValue.bind(this);
-        this.edit = this.edit.bind(this);
-        this.hapus = this.hapus.bind(this);
-        this.done = this.done.bind(this);
-        this.undone = this.undone.bind(this);
-        this.cancel = this.cancel.bind(this);
+        this.state = { done: false, init: true, edit: true, task: "", tempValue: "" };
     }
 
-    edit() {
+    edit = () => {
         this.setState({edit: true});
     }
 
-    cancel() {
+    cancel = () => {
         this.setState({edit: false});
     }
 
-    save() {
+    save = () => {
         if (this.state.init)
             this.setState({init: false});
         this.setState({task: this.state.tempValue, edit: false});
     }
 
-    tempValue(e) {
+    tempValue = (e) => {
         this.setState({tempValue: e.target.value});
     }
 
-    undone() {
+    undone = () => {
         this.setState({done: false});
     }
 
-    done() {
+    done = () => {
         this.setState({done: true});
     }
 
-    hapus() {
+    hapus = () => {
         this.parent.removeTask(this);
     }
 
